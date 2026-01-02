@@ -15,11 +15,12 @@ if not api_key:
 
 app = FastAPI()
 
-# 2. Configurar permisos (CORS) para que Angular pueda entrar
+# 2. Configurar permisos (CORS) - CORREGIDO
+# Ponemos allow_credentials=False para que funcione con allow_origins=["*"]
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],
-    allow_credentials=True,
+    allow_origins=["*"],      # Permitimos acceso desde cualquier lugar (GitHub, Localhost)
+    allow_credentials=False,  # <--- IMPORTANTE: Esto arregla el Error 0
     allow_methods=["*"],
     allow_headers=["*"],
 )
